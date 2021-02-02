@@ -29,6 +29,7 @@ Metadata:
       - Label:
           default: Network Configuration
         Parameters:
+          - VPCNAME
           - VPCCIDR
           - CreatePublicSubnets
           - PublicSubnet1CIDR
@@ -120,6 +121,8 @@ Metadata:
         default: Tag for Public Subnets
       PublicSubnetTag3:
         default: Tag for Public Subnets
+      VPCNAME:
+        default: VPC NAME
       VPCCIDR:
         default: VPC CIDR
       VPCTenancy:
@@ -328,6 +331,10 @@ Parameters:
     Default: 10.0.0.0/16
     Description: CIDR block for the VPC
     Type: String
+  VPCNAME:
+    Default: my-vpc
+    Description: VPC name you wish to use.
+    Type: String
   VPCTenancy:
     AllowedValues:
       - default
@@ -471,7 +478,7 @@ Resources:
       EnableDnsHostnames: true
       Tags:
         - Key: Name
-          Value: !Ref 'AWS::StackName'
+          Value: !Ref 'VPCNAME'
   VPCDHCPOptionsAssociation:
     Type: AWS::EC2::VPCDHCPOptionsAssociation
     Properties:
@@ -1807,3 +1814,8 @@ Outputs:
     Description: VPC ID
     Export:
       Name: !Sub '${AWS::StackName}-VPCID'
+  VPCNAME:
+    Value: !Ref 'VPCNAME'
+    Description: VPC Name
+    Export:
+      Name: !Sub '${AWS::StackName}-VPCNAME'

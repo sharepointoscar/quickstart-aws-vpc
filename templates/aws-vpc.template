@@ -18,6 +18,7 @@
                         "default": "Network Configuration"
                     },
                     "Parameters": [
+                        "VPCNAME",
                         "VPCCIDR",
                         "PublicSubnet1CIDR",
                         "PublicSubnet2CIDR",
@@ -136,6 +137,9 @@
                 },
                 "PublicSubnetTag3": {
                     "default": "Tag for Public Subnets"
+                },
+                "VPCNAME": {
+                    "default": "VPC Name"
                 },
                 "VPCCIDR": {
                     "default": "VPC CIDR"
@@ -336,6 +340,11 @@
             "Description": "tag to add to public subnets, in format Key=Value (Optional)",
             "Type": "String"
         },
+        "VPCNAME": {
+            "Default": "vpc-name",
+            "Description": "VPC name you wish to use.",
+            "Type": "String"
+        },        
         "VPCCIDR": {
             "AllowedPattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(1[6-9]|2[0-8]))$",
             "ConstraintDescription": "CIDR block parameter must be in the form x.x.x.x/16-28",
@@ -603,7 +612,7 @@
                     {
                         "Key": "Name",
                         "Value": {
-                            "Ref": "AWS::StackName"
+                            "Ref": "VPCNAME"
                         }
                     }
                 ]
@@ -3584,6 +3593,17 @@
             "Export": {
                 "Name": {
                     "Fn::Sub": "${AWS::StackName}-VPCID"
+                }
+            }
+        }, 
+        "VPCNAME": {
+            "Value": {
+                "Ref": "VPCNAME"
+            },
+            "Description": "VPC Name",
+            "Export": {
+                "Name": {
+                    "Fn::Sub": "${AWS::StackName}-VPCNAME"
                 }
             }
         }
