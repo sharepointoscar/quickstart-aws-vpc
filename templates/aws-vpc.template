@@ -3595,8 +3595,7 @@
                     "Fn::Sub": "${AWS::StackName}-VPCID"
                 }
             }
-        },
-        
+        }, 
         "VPCNAME": {
             "Value": {
                 "Ref": "VPCNAME"
