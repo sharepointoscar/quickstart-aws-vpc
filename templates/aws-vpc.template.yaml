@@ -29,6 +29,7 @@ Metadata:
       - Label:
           default: Network Configuration
         Parameters:
+        
           - VPCNAME
           - VPCCIDR
           - CreatePublicSubnets
