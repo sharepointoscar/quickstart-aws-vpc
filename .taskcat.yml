@@ -46,7 +46,7 @@ tests:
       PublicSubnet2CIDR: 10.0.144.0/20
       PublicSubnet3CIDR: 10.0.160.0/20
       PublicSubnet4CIDR: 10.0.176.0/20
-      VPCCIDR: 10.0.0.0/16
+      VPCCIDR: 10.0.0.0/16   
       VPCTenancy: default
     regions:
       - af-south-1
